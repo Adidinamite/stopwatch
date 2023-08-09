@@ -1,0 +1,37 @@
+.stopWatch{
+    background-color: #d0d0ab;
+    padding:1rem;
+    border: solid #ffff00;
+    border-radius: 5%;
+}
+.showTime{
+    display: flex;
+    align-content: center;
+    justify-content: space-evenly;
+    color: #7e7474;
+    font-size: 1.5rem;
+}
+.buttons{
+    display: flex;
+    align-content: center;
+    justify-content: space-evenly;
+
+}
+.startButton{
+    font-size: 1.5rem;
+    background-color: #a4ee50;
+}
+.resetButton{
+    font-size: 0.7rem;
+    background-color: #e71010;
+}
+.pauseButton{
+    font-size: 0.7rem;
+    background-color: #ec5581;
+}
+.btn{
+    border:none;
+    color: #fff;
+    padding : 1rem 2rem;
+    border-radius: 10%;
+}
