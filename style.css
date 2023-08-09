@@ -1,37 +1,42 @@
 .stopWatch{
-    background-color: #d0d0ab;
+    background-color: #000000;
     padding:1rem;
-    border: solid #ffff00;
-    border-radius: 5%;
+    border: solid #07fdd3;
+    border-radius: 5rem;
+    color: #05efd7;
 }
 .showTime{
     display: flex;
     align-content: center;
     justify-content: space-evenly;
-    color: #7e7474;
+    color: #0eff87;
     font-size: 1.5rem;
 }
 .buttons{
     display: flex;
     align-content: center;
     justify-content: space-evenly;
-
-}
-.startButton{
-    font-size: 1.5rem;
-    background-color: #a4ee50;
-}
-.resetButton{
-    font-size: 0.7rem;
-    background-color: #e71010;
-}
-.pauseButton{
-    font-size: 0.7rem;
-    background-color: #ec5581;
 }
 .btn{
-    border:none;
+    border:solid #07ffbd;
     color: #fff;
-    padding : 1rem 2rem;
-    border-radius: 10%;
+    padding : .5rem 1rem;
+    border-radius: 30rem;
+    font-size: 0.7rem;
+}
+.startButton{
+    background-color: rgba(168, 245, 13, 0.09);
+}
+.resetButton{
+    background-color: rgba(255, 4, 4, 0.09);
+}
+.pauseButton{
+    background-color: rgba(9, 216, 243, 0.09);
+}
+.line{
+    color: #068f77;
+    display: flex;
+   justify-content: space-around;
+    font-size: .6rem;
+    margin-top: -0.3rem;
 }

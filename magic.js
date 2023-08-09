@@ -6,6 +6,15 @@ let sec =0;
 let min =0;
 let timer = null;
 let displayTime = document.getElementById("displayTime")
+let isPlaying = false;
+let string;
+const resets = document.getElementById("resets");
+const addPar= ()=>{
+    const p = document.createElement('p');
+    const pText = document.createTextNode("hello");
+    p.appendChild(pText);
+    resets.appendChild(p);
+}
 const startTimer = () =>
 {
     msec++;
@@ -22,16 +31,19 @@ const startTimer = () =>
     let m = min < 10 ? "0"+min:min;
     let s = sec < 10 ? "0"+sec:sec;
     let ms = msec < 10 ? "0"+msec:msec;
-
-    displayTime.innerHTML = m+":"+s+":"+ms;
+    string=m+":"+s+":"+ms;
+    displayTime.innerHTML = string;
 }
 const playTime = () =>{
-    timer = setInterval(startTimer,10);
+    if(!isPlaying)
+        timer = setInterval(startTimer,10),
+        isPlaying=true;
 }
 const pauseTime = () =>{
     if(timer!==null){
         clearInterval(timer);
     }
+    isPlaying=false;
 }
 const resetTime = () => {
     pauseTime();
@@ -39,7 +51,24 @@ const resetTime = () => {
     sec=0;
     min=0;
     displayTime.innerHTML = "00:00:00";
+    const task = document.createElement("span");
+
 }
-startBtn.addEventListener("click", playTime);
-pauseBtn.addEventListener("click", pauseTime);
-resetBtn.addEventListener("click", resetTime);
+const changeStartToContinue = () =>{
+    startBtn.innerText="CONTINUE";
+}
+const changeContinueToStart = () =>{
+    startBtn.innerText="START";
+}
+startBtn.addEventListener("click", ()=>{
+    playTime();
+    changeContinueToStart();
+});
+pauseBtn.addEventListener("click",() =>{
+    pauseTime();
+    changeStartToContinue();
+});
+resetBtn.addEventListener("click",() =>{
+    resetTime();
+    changeContinueToStart()
+});

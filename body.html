@@ -8,16 +8,24 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
 </head>
-<body>
+<body style="background-color:black;">
     <div class="stopWatch">
         <div class="showTime" id="displayTime">
-            <span>00:00:00</span>
+            <span >00:00:00</span>
+        </div>
+        <div class="line">
+            <span class="">MIN</span>
+            <span class="">SEC</span>
+            <span class="">MS</span>
         </div>
         <div class="buttons">
             <button id="resetBtn" class="btn resetButton">RESET</button>
-            <button id="startBtn" class ="btn startButton">START</button>
+            <button id="startBtn" class ="btn startButton"><span>START</span></button>
             <button id="pauseBtn" class="btn pauseButton">PAUSE</button>
         </div>
+    </div>
+    <div id="resets" class="stopWatch">
+        <span >dsa</span>
     </div>
 </body>
 <script src="magic.js"></script>
