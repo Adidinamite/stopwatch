@@ -7,14 +7,8 @@ let min =0;
 let timer = null;
 let displayTime = document.getElementById("displayTime")
 let isPlaying = false;
-let string;
+let string="00:00:00";
 const resets = document.getElementById("resets");
-const addPar= ()=>{
-    const p = document.createElement('p');
-    const pText = document.createTextNode("hello");
-    p.appendChild(pText);
-    resets.appendChild(p);
-}
 const startTimer = () =>
 {
     msec++;
@@ -50,9 +44,13 @@ const resetTime = () => {
     msec = 0;
     sec=0;
     min=0;
-    displayTime.innerHTML = "00:00:00";
-    const task = document.createElement("span");
-
+    displayTime.innerHTML = string;
+    const pText = document.createTextNode("You reset your stopwatch at "+string)
+    const  p = document.createElement('p')
+    p.appendChild(pText);
+    p.classList.add("allResets");
+    resets.appendChild(p)
+    string ="00:00:00"
 }
 const changeStartToContinue = () =>{
     startBtn.innerText="CONTINUE";

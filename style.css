@@ -40,3 +40,14 @@
     font-size: .6rem;
     margin-top: -0.3rem;
 }
+.showResets{
+    display:flex;
+    flex-direction: column;
+}
+.allResets{
+    border-radius: 5rem;
+    background-color: #2a9a86;
+    color:#fff;
+    display: flex;
+    justify-content: center;
+}
