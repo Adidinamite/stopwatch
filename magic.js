@@ -1,56 +1,62 @@
-let startBtn = document.getElementById("startBtn");
-let resetBtn = document.getElementById("resetBtn");
-let pauseBtn = document.getElementById("pauseBtn");
-let msec =0;
-let sec =0;
-let min =0;
-let timer = null;
+const startBtn = document.getElementById("startBtn");
+const resetBtn = document.getElementById("resetBtn");
+const pauseBtn = document.getElementById("pauseBtn");
 let displayTime = document.getElementById("displayTime")
-let isPlaying = false;
-let string="00:00:00";
 const resets = document.getElementById("resets");
+let timer = null;
+let isPlaying = false;
+let timerStartTime = null;
+let savedTime =0;
+const formatTime = (milliseconds) =>{
+    let result = ""
+    let min =Math.floor(milliseconds/60000);
+    let sec = Math.floor((milliseconds%60000)/1000);
+    let ms = Math.floor(((milliseconds%60000)%1000));
+    result = min.toString().padStart(2,"0")+":"+sec.toString().padStart(2,"0")+":"+ms.toString().padStart(3,"0");
+    return result;
+}
 const startTimer = () =>
 {
-    msec++;
-    if(msec===100)
-    {
-        msec = 0;
-        sec++;
-        if(sec === 60)
-        {
-            sec = 0;
-            min++;
-        }
-    }
-    let m = min < 10 ? "0"+min:min;
-    let s = sec < 10 ? "0"+sec:sec;
-    let ms = msec < 10 ? "0"+msec:msec;
-    string=m+":"+s+":"+ms;
-    displayTime.innerHTML = string;
+    let timePassed= Date.now() -timerStartTime+savedTime;
+    displayTime.innerHTML=formatTime(timePassed);
+    console.log("sd")
 }
-const playTime = () =>{
-    if(!isPlaying)
-        timer = setInterval(startTimer,10),
-        isPlaying=true;
+const playTime = () => {
+    if (!isPlaying) {
+        timerStartTime = Date.now();
+        timer = setInterval(startTimer, 1);
+        isPlaying = true;
+    }
 }
 const pauseTime = () =>{
     if(timer!==null){
         clearInterval(timer);
     }
+    savedTime= Date.now() -timerStartTime+savedTime;
     isPlaying=false;
 }
 const resetTime = () => {
-    pauseTime();
-    msec = 0;
-    sec=0;
-    min=0;
-    displayTime.innerHTML = string;
-    const pText = document.createTextNode("You reset your stopwatch at "+string)
+    let pText;
+    let now=Date.now();
+    console.log(now,timerStartTime,savedTime);
+
+    if(timer!==null){
+        savedTime= now -timerStartTime+savedTime;
+        clearInterval(timer);
+        pText = document.createTextNode("You reset your stopwatch at "+formatTime(savedTime))
+    }
+    else
+    {
+        pText = document.createTextNode("You reset your stopwatch at "+formatTime(0));
+    }
+    isPlaying=false;
+    displayTime.innerHTML = formatTime(0);
+    console.log(savedTime);
+    savedTime=0;
     const  p = document.createElement('p')
     p.appendChild(pText);
     p.classList.add("allResets");
     resets.appendChild(p)
-    string ="00:00:00"
 }
 const changeStartToContinue = () =>{
     startBtn.innerText="CONTINUE";
@@ -68,5 +74,5 @@ pauseBtn.addEventListener("click",() =>{
 });
 resetBtn.addEventListener("click",() =>{
     resetTime();
-    changeContinueToStart()
+    changeContinueToStart();
 });
